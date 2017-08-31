@@ -1,0 +1,10 @@
+$title: Grow Profiling Analyzer
+$path: /
+$order: -1
+description: Tool for analyzing the profiling data from Grow builds.
+
+composite_files:
+- home
+
+partials:
+- partial: timeline
