@@ -7,7 +7,6 @@ export default class Upload {
     this.element = config.element || document.querySelector('.upload')
     this.element.addEventListener('drop', this.onDrop.bind(this))
     this.element.addEventListener('dragend', this.onDragEnd.bind(this))
-    this.element.addEventListener('dragenter', this.onDragEnter.bind(this))
     this.element.addEventListener('dragleave', this.onDragLeave.bind(this))
     this.element.addEventListener('dragover', this.onDragOver.bind(this))
   }
@@ -30,16 +29,13 @@ export default class Upload {
     }
   }
 
-  onDragEnter(e) {
-    this.element.classList.add('upload--over')
-  }
-
   onDragLeave(e) {
     this.element.classList.remove('upload--over')
   }
 
   onDragOver(e) {
     e.preventDefault()
+    this.element.classList.add('upload--over')
   }
 
   onDrop(e) {
