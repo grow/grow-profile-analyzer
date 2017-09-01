@@ -8,7 +8,7 @@ localization:
 deployments:
   prod:
     destination: gcs
-    bucket: analyze.grow.io
+    bucket: profile.grow.io
     headers:
     - extensions:
       - .png
