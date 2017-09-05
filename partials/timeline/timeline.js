@@ -54,13 +54,19 @@ export default class TimelinePartial {
         const timers = timerSet.timers
         for (const i in timers) {
           const timer = timers[i]
-          rows.push([timer.key, timer.label, timer.startDate, timer.endDate])
+          rows.push([
+            timer.key,
+            timer.label,
+            timer.startDate,
+            timer.endDate
+          ])
         }
       }
       dataTable.addRows(rows)
       chart.draw(dataTable, {
         avoidOverlappingGridLines: false,
       })
+      this.elContainer.classList.add('timeline--active')
     })
   }
 
