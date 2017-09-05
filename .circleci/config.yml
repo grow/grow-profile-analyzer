@@ -13,27 +13,27 @@ jobs:
         - grow-cache-{{ .Branch }}
         - grow-cache
 
-    - run:
-        name: Grow Intall
-        command: grow install
+      - run:
+          name: Grow Intall
+          command: grow install
 
-    - save_cache:
-        key: grow-cache-{{ .Branch }}-{{ checksum "package.json" }}
-        paths:
-          - extensions
-          - node_modules
+      - save_cache:
+          key: grow-cache-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - extensions
+            - node_modules
 
-    - save_cache:
-        key: grow-cache-{{ .Branch }}
-        paths:
-          - extensions
-          - node_modules
+      - save_cache:
+          key: grow-cache-{{ .Branch }}
+          paths:
+            - extensions
+            - node_modules
 
-    - save_cache:
-        key: grow-cache
-        paths:
-          - extensions
-          - node_modules
+      - save_cache:
+          key: grow-cache
+          paths:
+            - extensions
+            - node_modules
 
       - run:
           name: Test Build
