@@ -9,3 +9,4 @@ composite_files:
 partials:
 - partial: upload
 - partial: timeline
+- partial: top

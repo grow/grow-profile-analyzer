@@ -1,12 +1,12 @@
-export default class Timeline {
+export default class Top {
   constructor(config) {
     this.config = config || {}
     this.eventTarget = config.eventTarget || document
     this.eventTarget.addEventListener('data-loaded', this.onDataLoaded.bind(this))
-    this.container = document.querySelector('.timeline')
+    this.container = document.querySelector('.top')
   }
 
   onDataLoaded(e) {
-    console.log('Timeline has data', e.detail)
+    console.log('Top has data', e.detail)
   }
 }

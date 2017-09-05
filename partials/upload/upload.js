@@ -1,3 +1,4 @@
+import ProfileData from '../../source/js/profile/profile_data';
 const yaml = require('js-yaml')
 
 export default class Upload {
@@ -12,9 +13,10 @@ export default class Upload {
   }
 
   handleData(data) {
+    const profileData = new ProfileData(data)
     document.dispatchEvent(
       new CustomEvent('data-loaded', {
-        detail: data
+        detail: profileData
       }))
   }
 

@@ -8,6 +8,7 @@ dependencies:
   - /partials/footer/footer.html
   - /partials/header/header.html
   - /partials/timeline/timeline.html
+  - /partials/top/top.html
   - /partials/upload/upload.html
   - /static/images/favicon.png
 objects: {}
