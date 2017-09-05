@@ -8,10 +8,10 @@ jobs:
       - checkout
 
       - restore_cache:
-        keys:
-        - grow-cache-{{ .Branch }}-{{ checksum "package.json" }}
-        - grow-cache-{{ .Branch }}
-        - grow-cache
+          keys:
+          - grow-cache-{{ .Branch }}-{{ checksum "package.json" }}
+          - grow-cache-{{ .Branch }}
+          - grow-cache
 
       - run:
           name: Grow Intall
