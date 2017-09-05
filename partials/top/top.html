@@ -1,10 +1,30 @@
 <section class="top">
-  <template id="top-template-item">
-    <div class="top__item">
+  <template id="top-template-timerset">
+    <div class="top__timerset">
       <h2></h2>
-      <p>Duration: <strong><span class="top__item__duration"></span></strong></p>
+      <p>Duration: <strong><span class="top__timerset__duration"></span></strong></p>
+      <div class="top__split">
+        <div class="top__slow">
+          <h3>{{_('Slowest')}}</h3>
+          <div class="top__list"></div>
+        </div>
+        <div class="top__fast">
+          <h3>{{_('Fastest')}}</h3>
+          <div class="top__list"></div>
+        </div>
+      </div>
     </div>
   </template>
 
-  <div class="top__items"></div>
+  <template id="top-template-timer">
+    <div class="top__timer">
+      <p>
+        <span class="top__timer__label"></span>:
+        <strong><span class="top__timer__duration"></span></strong>
+        (<span class="top__timer__percent"></span>%)
+      </p>
+    </div>
+  </template>
+
+  <div class="top__timersets"></div>
 </section>

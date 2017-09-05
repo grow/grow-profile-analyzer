@@ -19,7 +19,7 @@ class TimerSet {
     this.timers = []
 
     for (const i in this.data.timers) {
-      this.timers.push(new Timer(this.data.timers[i]))
+      this.timers.push(new Timer(this, this.data.timers[i]))
     }
   }
 
@@ -42,10 +42,28 @@ class TimerSet {
   get startDate() {
     return new Date(this.data.start * 1000)
   }
+
+  timersByDuration() {
+    let timers = []
+    for (const i in this.timers) {
+      timers.push(this.timers[i])
+    }
+
+    timers.sort(function(a, b) {
+      const keyA = a.duration.raw
+      const keyB = b.duration.raw
+      if (keyA < keyB) return -1
+      if (keyA > keyB) return 1
+      return 0
+    })
+
+    return timers
+  }
 }
 
 class Timer {
-  constructor(data) {
+  constructor(timerSet, data) {
+    this.timerSet = timerSet
     this.data = data || {}
   }
 
