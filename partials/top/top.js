@@ -1,4 +1,4 @@
-export default class Top {
+export default class TopPartial {
   constructor(config) {
     this.config = config || {}
     this.eventTarget = config.eventTarget || document

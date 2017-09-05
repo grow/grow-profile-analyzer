@@ -1,4 +1,4 @@
-export default class Timeline {
+export default class TimelinePartial {
   constructor(config) {
     this.config = config || {}
     this.eventTarget = config.eventTarget || document

@@ -76,6 +76,14 @@ gulp.task('compile-js', function() {
       .pipe(gulp.dest(config.JS_OUT_DIR));
 });
 
+gulp.task('compile-min-js', function() {
+  return gulp.src(config.JS_SOURCES)
+      .pipe(webpackStream(
+        webpackProdConfig, webpack
+      ))
+      .pipe(gulp.dest(config.JS_OUT_DIR));
+});
+
 gulp.task('watch-js', () => {
   webpackConfig.watch = true;
 
@@ -108,5 +116,5 @@ gulp.task('watch-sass', function() {
 });
 
 gulp.task('build', ['compile-js', 'compile-sass']);
-gulp.task('grow-build', ['compile-js', 'compile-sass']);
-gulp.task('default', ['compile-js', 'compile-sass', 'watch-js', 'watch-sass']);
+gulp.task('grow-build', ['compile-min-js', 'compile-sass']);
+gulp.task('default', ['compile-sass', 'watch-js', 'watch-sass']);

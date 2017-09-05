@@ -1,7 +1,7 @@
-import Timeline from '../../../partials/timeline/timeline';
-import Top from '../../../partials/top/top';
-import Upload from '../../../partials/upload/upload';
+import TimelinePartial from '../../../partials/timeline/timeline';
+import TopPartial from '../../../partials/top/top';
+import UploadPartial from '../../../partials/upload/upload';
 
-new Upload({});
-new Timeline({});
-new Top({});
+new UploadPartial({});
+new TimelinePartial({});
+new TopPartial({});

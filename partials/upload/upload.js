@@ -1,7 +1,7 @@
 import ProfileData from '../../source/js/profile/profile_data';
 const yaml = require('js-yaml')
 
-export default class Upload {
+export default class UploadPartial {
   constructor(config) {
     this.config = config || {}
     this.eventTarget = config.eventTarget || document
