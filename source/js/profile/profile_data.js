@@ -3,12 +3,27 @@ import Duration from './duration'
 export default class ProfileData {
   constructor(data) {
     this.data = {}
+    this.minStart = null
+    this.maxEnd = null
     for (var key in data) {
       if (!data.hasOwnProperty(key)) {
         continue
       }
-      this.data[key] = new TimerSet(key, data[key])
+      const timerSet = new TimerSet(key, data[key])
+      this.data[key] = timerSet
+
+      if (!this.minStart || timerSet.start < this.minStart) {
+        this.minStart = timerSet.start
+      }
+
+      if (!this.maxEnd || timerSet.end > this.maxEnd) {
+        this.maxEnd = timerSet.end
+      }
     }
+  }
+
+  get duration() {
+    return new Duration(this.maxEnd - this.minStart)
   }
 }
 

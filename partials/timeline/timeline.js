@@ -38,27 +38,34 @@ export default class TimelinePartial {
         id: 'Label'
       });
       dataTable.addColumn({
-        type: 'date',
+        type: 'string',
+        role: 'tooltip'
+      });
+      dataTable.addColumn({
+        type: 'number',
         id: 'Start'
       })
       dataTable.addColumn({
-        type: 'date',
+        type: 'number',
         id: 'End'
       })
       const rows = []
+      const offset = e.detail.minStart
       for (const key in data) {
         if (!data.hasOwnProperty(key)) {
           continue
         }
         const timerSet = data[key]
         const timers = timerSet.timers
+
         for (const i in timers) {
           const timer = timers[i]
           rows.push([
             timer.key,
             timer.label,
-            timer.startDate,
-            timer.endDate
+            timer.label + ' (' + timer.duration.pretty + ')',
+            timer.start - offset,
+            timer.end - offset
           ])
         }
       }
