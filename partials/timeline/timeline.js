@@ -26,6 +26,12 @@ export default class TimelinePartial {
         this.elChart = chartContainer.querySelector('.timeline__chart')
         this.elContainer.appendChild(chartContainer)
       }
+
+      // Adjust width for the timeline duration.
+      const widthRatio = Math.max(100, (e.detail.duration.raw / 30 * 100).toFixed(2))
+      this.elChart.style.width = widthRatio + '%';
+      this.elContainer.classList.add('timeline--active')
+
       let chart = new google.visualization.Timeline(this.elChart)
       let dataTable = new google.visualization.DataTable()
 
@@ -73,7 +79,6 @@ export default class TimelinePartial {
       chart.draw(dataTable, {
         avoidOverlappingGridLines: false,
       })
-      this.elContainer.classList.add('timeline--active')
     })
   }
 
