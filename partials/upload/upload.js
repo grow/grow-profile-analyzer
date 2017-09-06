@@ -5,11 +5,12 @@ export default class UploadPartial {
   constructor(config) {
     this.config = config || {}
     this.eventTarget = config.eventTarget || document
-    this.element = config.element || document.querySelector('.upload')
-    this.element.addEventListener('drop', this.onDrop.bind(this))
-    this.element.addEventListener('dragend', this.onDragEnd.bind(this))
-    this.element.addEventListener('dragleave', this.onDragLeave.bind(this))
-    this.element.addEventListener('dragover', this.onDragOver.bind(this))
+    this.elContainer = config.element || document.querySelector('.upload')
+    this.elDrop = this.elContainer.querySelector('.upload__drop')
+    this.elDrop.addEventListener('drop', this.onDrop.bind(this))
+    this.elDrop.addEventListener('dragend', this.onDragEnd.bind(this))
+    this.elDrop.addEventListener('dragleave', this.onDragLeave.bind(this))
+    this.elDrop.addEventListener('dragover', this.onDragOver.bind(this))
   }
 
   handleData(data) {
@@ -32,12 +33,12 @@ export default class UploadPartial {
   }
 
   onDragLeave(e) {
-    this.element.classList.remove('upload--over')
+    this.elDrop.classList.remove('upload__drop--over')
   }
 
   onDragOver(e) {
     e.preventDefault()
-    this.element.classList.add('upload--over')
+    this.elDrop.classList.add('upload__drop--over')
   }
 
   onDrop(e) {
@@ -73,6 +74,6 @@ export default class UploadPartial {
     }.bind(this)
     fileReader.readAsText(file)
 
-    this.element.classList.remove('upload--over')
+    this.elDrop.classList.remove('upload__drop--over')
   }
 }

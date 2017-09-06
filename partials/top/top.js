@@ -79,5 +79,7 @@ export default class TopPartial {
     for (var i in keys) {
       this.addTimerSet(data[keys[i]])
     }
+
+    this.elContainer.classList.add('top--active')
   }
 }

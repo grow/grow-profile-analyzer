@@ -1,11 +1,14 @@
 @import '../../source/sass/common/config'
+@import '../../source/sass/common/card'
 
 .upload
+  +card
+
+.upload__drop
   background: $color-bg
   border: 2px dashed transparent
   font-weight: bold
   padding: $padding*2
-  margin: $padding 0
   transition: background-color 2.5s ease, border-color 1.5s ease
 
   &--over
