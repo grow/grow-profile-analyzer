@@ -1,4 +1,5 @@
 import Duration from './duration'
+import Percentage from './percentage'
 
 export default class ProfileData {
   constructor(data) {
@@ -9,7 +10,7 @@ export default class ProfileData {
       if (!data.hasOwnProperty(key)) {
         continue
       }
-      const timerSet = new TimerSet(key, data[key])
+      const timerSet = new TimerSet(this, key, data[key])
       this.data[key] = timerSet
 
       if (!this.minStart || timerSet.start < this.minStart) {
@@ -28,14 +29,23 @@ export default class ProfileData {
 }
 
 class TimerSet {
-  constructor(key, data) {
+  constructor(profileData, key, data) {
     this.key = key || null
     this.data = data || {}
+    this.profileData = profileData
     this.timers = []
 
     for (const i in this.data.timers) {
       this.timers.push(new Timer(this, this.data.timers[i]))
     }
+  }
+
+  get average() {
+    return new Duration(this.total.raw / this.count)
+  }
+
+  get count() {
+    return this.timers.length
   }
 
   get duration() {
@@ -56,6 +66,19 @@ class TimerSet {
 
   get startDate() {
     return new Date(this.data.start * 1000)
+  }
+
+  get total() {
+    let total = 0
+    for (const i in this.timers) {
+      total += this.timers[i].duration.raw
+    }
+
+    return new Duration(total)
+  }
+
+  get total_percent() {
+    return new Percentage(this.total.raw / this.profileData.duration.raw)
   }
 
   timersByDuration() {
@@ -112,5 +135,13 @@ class Timer {
 
   get startDate() {
     return new Date(this.data.start * 1000)
+  }
+
+  get total() {
+    return this.duration
+  }
+
+  get total_percent() {
+    return new Percentage(this.total.raw / this.timerSet.total.raw)
   }
 }

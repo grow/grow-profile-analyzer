@@ -78,6 +78,9 @@ export default class TimelinePartial {
       dataTable.addRows(rows)
       chart.draw(dataTable, {
         avoidOverlappingGridLines: false,
+        timeline: {
+          singleColor: '#120d7a',
+        },
       })
     })
   }

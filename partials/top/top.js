@@ -1,3 +1,5 @@
+import TextContent from '../../source/js/common/textContent'
+
 export default class TopPartial {
   constructor(config) {
     this.config = config || {}
@@ -11,28 +13,27 @@ export default class TopPartial {
 
   addTimer(timer, elList) {
     const currentTimer = document.importNode(this.temTimer.content, true)
+    const container = new TextContent(currentTimer)
 
-    const elTimerHeader = currentTimer.querySelector('.top__timer__label')
-    elTimerHeader.innerText = timer.label
-    const elTimerDuration = currentTimer.querySelector('.top__timer__duration')
-    elTimerDuration.innerText = timer.duration.pretty
-    const elTimerPercent = currentTimer.querySelector('.top__timer__percent')
-    elTimerPercent.innerText = (
-      timer.duration.raw / timer.timerSet.duration.raw * 100).toFixed(3)
+    container.text('.top__timer__label', timer.label)
+    container.text('.top__timer__duration', timer.duration.pretty)
+    container.text('.top__timer__percent', timer.total_percent.pretty)
 
     elList.appendChild(currentTimer)
   }
 
   addTimerSet(timerSet) {
     const currentTimerSet = document.importNode(this.temTimerSet.content, true)
+    const container = new TextContent(currentTimerSet)
 
     // Set the timer set information
-    const elHeader = currentTimerSet.querySelector('h2')
-    elHeader.innerText = timerSet.key
-    const elDuration = currentTimerSet.querySelector('.top__timerset__duration')
-    elDuration.innerText = timerSet.duration.pretty
+    container.text('h2', timerSet.key)
+    container.text('.top__timerset__total', timerSet.total.pretty)
+    container.text('.top__timerset__count', timerSet.count)
+    container.text('.top__timerset__total__percentage', timerSet.total_percent.pretty)
 
     if (timerSet.timers.length > 1) {
+      container.text('.top__timerset__average', timerSet.average.pretty)
       const elFastest = currentTimerSet.querySelector('.top__fast .top__list')
       const elSlowest = currentTimerSet.querySelector('.top__slow .top__list')
       const sortedTimers = timerSet.timersByDuration()
@@ -49,8 +50,8 @@ export default class TopPartial {
         this.addTimer(fastest[i], elFastest)
       }
     } else {
-      const elSplit = currentTimerSet.querySelector('.top__split')
-      elSplit.parentNode.removeChild(elSplit)
+      const elMulti = currentTimerSet.querySelector('.top__multi')
+      elMulti.remove()
     }
 
     this.elItems.appendChild(currentTimerSet)

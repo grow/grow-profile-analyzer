@@ -2,15 +2,18 @@
   <template id="top-template-timerset">
     <div class="top__timerset">
       <h2></h2>
-      <p>Duration: <strong><span class="top__timerset__duration"></span></strong></p>
-      <div class="top__split">
-        <div class="top__slow">
-          <h3>{{_('Slowest')}}</h3>
-          <div class="top__list"></div>
-        </div>
-        <div class="top__fast">
-          <h3>{{_('Fastest')}}</h3>
-          <div class="top__list"></div>
+      <p><strong><span class="top__timerset__count"></span></strong> instances accounting for <strong><span class="top__timerset__total"></span> (<span class="top__timerset__total__percentage"></span>)</strong></p>
+      <div class="top__multi">
+        <p>Average: <strong><span class="top__timerset__average"></span></strong></p>
+        <div class="top__split">
+          <div class="top__slow">
+            <h3>{{_('Slowest')}}</h3>
+            <div class="top__list"></div>
+          </div>
+          <div class="top__fast">
+            <h3>{{_('Fastest')}}</h3>
+            <div class="top__list"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -21,6 +24,7 @@
       <p>
         <span class="top__timer__label"></span>:
         <strong><span class="top__timer__duration"></span></strong>
+        <strong><span class="top__timer__total"></span></strong>
         (<span class="top__timer__percent"></span>%)
       </p>
     </div>
