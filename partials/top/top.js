@@ -1,8 +1,10 @@
+import I18n from '../../source/js/common/i18n'
 import TextContent from '../../source/js/common/textContent'
 
 export default class TopPartial {
   constructor(config) {
     this.config = config || {}
+    this.i18n = new I18n()
     this.eventTarget = config.eventTarget || document
     this.eventTarget.addEventListener('data-loaded', this.onDataLoaded.bind(this))
     this.elContainer = document.querySelector('.top')
@@ -30,6 +32,8 @@ export default class TopPartial {
     container.text('h2', timerSet.key)
     container.text('.top__timerset__total', timerSet.total.pretty)
     container.text('.top__timerset__count', timerSet.count)
+    container.text('.top__timerset__count__unit', this.i18n.ngettext(
+      'instance', 'instances', timerSet.count))
     container.text('.top__timerset__total__percentage', timerSet.total_percent.pretty)
 
     if (timerSet.timers.length > 1) {
