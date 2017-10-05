@@ -66,7 +66,7 @@ export default class UploadPartial {
     fileReader.onloadend = function(results) {
       if (file.name.match(/\.(yaml|yml)$/i)) {
         this.handleData(yaml.safeLoad(fileReader.result))
-      } else if (file.name.match('application/json')) {
+      } else if (file.type.match('application/json')) {
         this.handleData(JSON.parse(fileReader.result))
       } else {
         console.error('Only json and yaml files types are supported', file.name)
